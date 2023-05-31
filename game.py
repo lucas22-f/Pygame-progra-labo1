@@ -1,49 +1,54 @@
 import pygame
 import random
+from Asteroide import Asteroide
+from Nave import Nave
+
 def main():
     pygame.init()
-    screen = pygame.display.set_mode([500,500])
+    screen = pygame.display.set_mode([1280,720])
     pygame.display.set_caption("My game","jueguito")
 
+    #TIMER
+    tick = pygame.USEREVENT + 0 
+    pygame.time.set_timer(tick,30)
+    
+    #ASTEROIDES
+    lista_ast = Asteroide.crear_lista_ast(10)
+
+    #NAVE
+    nave = Nave()
+
     ventana = True
-    posX = random.randint(0,500)
-    posY = random.randint(0,500)
-    posZ = random.randint(0,500)
-    posW = random.randint(0,500)
 
     while(ventana):
+        
         for event in pygame.event.get():
             
             if event.type == pygame.QUIT:
                 ventana = False
-            if event.type == pygame.MOUSEMOTION:
-                mouse = event.pos
-        posX = posX + random.randint(-1,1)        
-        posY = posY + random.randint(-1,1)
-        posZ = posZ + random.randint(-1,1)
-        posW = posW + random.randint(-1,1)
+            if event.type == pygame.USEREVENT:
+                if event.type == tick:
+                    Asteroide.actualizar(lista_ast)
 
-        if posX < 0 or posW < 0:
-            posX = 0
-            posW = 0
-        elif posX > 500 or posZ > 500:
-            posX = 500
-            posZ = 500
-        if posY < 0 or posW < 0:
-            posY = 0
-            posW = 0
-        elif posY > 500 or posZ > 500:
-            posY = 500
-            posZ = 500
+        lista_teclas = pygame.key.get_pressed()
+
+        if lista_teclas[pygame.K_UP]:
+            Nave.actualizar_movimientoY(nave,-1)
+        if lista_teclas[pygame.K_DOWN]:
+            Nave.actualizar_movimientoY(nave,1)
+        if lista_teclas[pygame.K_LEFT]:
+            Nave.actualizar_movimientoX(nave,-1)
+        if lista_teclas[pygame.K_RIGHT]:
+            Nave.actualizar_movimientoX(nave,1)
 
 
-        screen.fill((124,252,0))
-        pygame.draw.circle(screen,(255,0,0),(posX,posY),5)
-        pygame.draw.circle(screen,(255,0,0),(posX,posY),5)
-        pygame.draw.circle(screen,(255,0,0),(posZ,posW),5)
-        pygame.draw.circle(screen,(255,0,0),(posZ,posW),5)
-        pygame.draw.circle(screen,(0,0,255),mouse,10)
+        screen.fill((13,7,34)) 
+        Nave.actualizar(nave,screen)
+        Asteroide.actualizar_pantalla(lista_ast,nave,screen)
+        
+            
+
+
         pygame.display.flip()
     pygame.quit()
-
 main()

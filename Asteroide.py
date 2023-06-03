@@ -1,5 +1,5 @@
 import pygame
-
+import random
 class Asteroide:
     def __init__(self,x,y) -> None:
         #Asteroide
@@ -8,17 +8,21 @@ class Asteroide:
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y
         self.visible = True
+        self.velocidad = random.randrange(1,50,2)
 
     def crear_lista_ast(cant):
         lista_ast = []
         for i in range(cant):
-            lista_ast.append(Asteroide(10,i*160))
+            rand_y = random.randrange(0,600,70)
+            rand_x = random.randrange(-1000,0,70)
+            lista_ast.append(Asteroide(rand_x,rand_y))
         return lista_ast
 
     def actualizar(lista_ast):
         for ast in lista_ast:   
             rect_ast = ast.asteroide_rect
-            rect_ast.x = rect_ast.x + 15 
+            rect_ast.x = rect_ast.x + ast.velocidad
+            
     
     def actualizar_pantalla(lista_ast,nave,screen):
         for ast in lista_ast:   

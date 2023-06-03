@@ -2,6 +2,7 @@ import pygame
 import random
 from Asteroide import Asteroide
 from Nave import Nave
+from Disparo import Disparo
 
 def main():
     pygame.init()
@@ -10,7 +11,7 @@ def main():
 
     #TIMER
     tick = pygame.USEREVENT + 0 
-    pygame.time.set_timer(tick,30)
+    pygame.time.set_timer(tick,60)
     
     #ASTEROIDES
     lista_ast = Asteroide.crear_lista_ast(10)
@@ -22,13 +23,7 @@ def main():
 
     while(ventana):
         
-        for event in pygame.event.get():
-            
-            if event.type == pygame.QUIT:
-                ventana = False
-            if event.type == pygame.USEREVENT:
-                if event.type == tick:
-                    Asteroide.actualizar(lista_ast)
+
 
         lista_teclas = pygame.key.get_pressed()
 
@@ -41,13 +36,22 @@ def main():
         if lista_teclas[pygame.K_RIGHT]:
             Nave.actualizar_movimientoX(nave,1)
 
+        for event in pygame.event.get():
+            
+            if event.type == pygame.QUIT:
+                ventana = False
+            if event.type == pygame.USEREVENT:
+                if event.type == tick:
+                    Asteroide.actualizar(lista_ast)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    Nave.disparar(nave)
 
+         
+       
         screen.fill((13,7,34)) 
         Nave.actualizar(nave,screen)
         Asteroide.actualizar_pantalla(lista_ast,nave,screen)
-        
-            
-
 
         pygame.display.flip()
     pygame.quit()

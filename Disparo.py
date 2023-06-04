@@ -8,11 +8,13 @@ class Disparo:
         self.disparo_rect = self.superficie_bala.get_rect()
         self.disparo_rect.y = y
         self.disparo_rect.x = x
+        self.disparo_daño = 25
        
 
     def mover(self):
-        self.disparo_rect.x -= 5
+        self.disparo_rect.x -= 1
        
+            
     
         
             

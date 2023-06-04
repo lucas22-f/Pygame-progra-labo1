@@ -9,17 +9,23 @@ class Nave:
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 1100
         self.nave_rect.y = 300
+        self.colision = False
         self.nave_visible = True
+        self.nave_vida = 300
         self.balas = []
 
     def actualizar(self,screen):
             if self.nave_visible:
                 pygame.draw.rect(screen,(0,250,0),self.nave_rect)
                 screen.blit(self.nave_imagen,self.nave_rect)
-            for balas in self.balas:
-                 pygame.draw.rect(screen,(255,255,255),balas.disparo_rect)
-                 balas.mover()
-                 screen.blit(balas.superficie_bala, balas.disparo_rect)
+            for i,balas in enumerate(self.balas):
+                pygame.draw.rect(screen,(255,255,255),balas.disparo_rect)
+                balas.mover()
+                screen.blit(balas.superficie_bala, balas.disparo_rect)
+                if balas.disparo_rect.left < 0 or balas.disparo_rect.right > 1230:
+                    self.balas.pop(i)
+                    print(len(self.balas))
+                    
 
     def disparar(self):
          bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)

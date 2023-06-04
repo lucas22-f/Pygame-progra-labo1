@@ -2,8 +2,7 @@ import pygame
 import random
 from Asteroide import Asteroide
 from Nave import Nave
-from Disparo import Disparo
-
+from Fondo import Fondo
 def main():
     pygame.init()
     screen = pygame.display.set_mode([1280,720])
@@ -11,10 +10,16 @@ def main():
 
     #TIMER
     tick = pygame.USEREVENT + 0 
-    pygame.time.set_timer(tick,60)
+    pygame.time.set_timer(tick,30)
     
     #ASTEROIDES
-    lista_ast = Asteroide.crear_lista_ast(10)
+    lista_ast = Asteroide.crear_lista_ast(15)
+    #colisiones asteroide - nave
+    lista_colisionados = Asteroide.crear_lista_colisionados(lista_ast)
+
+    
+    #Particulas
+    lista_particulas = Fondo.crear_lista_particulas(100)
 
     #NAVE
     nave = Nave()
@@ -43,6 +48,7 @@ def main():
             if event.type == pygame.USEREVENT:
                 if event.type == tick:
                     Asteroide.actualizar(lista_ast)
+                    Fondo.actualizar_particulas(lista_particulas)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
@@ -50,8 +56,11 @@ def main():
          
        
         screen.fill((13,7,34)) 
+        Fondo.dibujar_particulas(lista_particulas,screen)
         Nave.actualizar(nave,screen)
+        Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
         Asteroide.actualizar_pantalla(lista_ast,nave,screen)
+       
 
         pygame.display.flip()
     pygame.quit()

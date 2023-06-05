@@ -1,5 +1,7 @@
 # Pygame-progra-labo1
+-Ultimo update : Se agregan colisiones de las balas contra los asteroides y cambio de fondo
 
+https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/cb991397-550a-487f-9565-811534699059
 
 -Ultimo update : Se agrego metodo disparo junto con la colision de nave-asteroide
 

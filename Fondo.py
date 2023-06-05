@@ -8,7 +8,7 @@ class Fondo:
         self.particula_rect = self.superficie_particula.get_rect()
         self.particula_rect.x = x
         self.particula_rect.y = y
-        self.particula_velocidad = random.randrange(10,20,2)
+        self.particula_velocidad = random.randrange(0,50,2)
         
     
     def crear_lista_particulas(cant):

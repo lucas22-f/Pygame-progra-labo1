@@ -9,10 +9,21 @@ class Disparo:
         self.disparo_rect.y = y
         self.disparo_rect.x = x
         self.disparo_daño = 25
-       
 
     def mover(self):
-        self.disparo_rect.x -= 1
+        self.disparo_rect.x -= 10
+
+    def verificar_colision_asteroide(self, asteroide):
+        if self.disparo_rect.colliderect(asteroide.asteroide_rect):
+            return True
+        return False
+
+    
+                
+               
+ 
+        
+
        
             
     

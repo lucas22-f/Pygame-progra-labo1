@@ -1,6 +1,7 @@
+import random
 import pygame
 from Disparo import Disparo
-
+from Asteroide import Asteroide
 class Nave:
     def __init__(self) -> None:
         
@@ -22,16 +23,27 @@ class Nave:
                 pygame.draw.rect(screen,(255,255,255),balas.disparo_rect)
                 balas.mover()
                 screen.blit(balas.superficie_bala, balas.disparo_rect)
-                if balas.disparo_rect.left < 0 or balas.disparo_rect.right > 1230:
+                if balas.disparo_rect.left < -10 or balas.disparo_rect.right > 1230:
                     self.balas.pop(i)
-                    print(len(self.balas))
                     
-
     def disparar(self):
          bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)
-         bala.mover()
          self.balas.append(bala)
+        
+    def verificar_colision_bala(self, lista_ast):# Verificar bug 2 asteroides juntos al mismo tiempo.
+        lista_aux = []
+        for bala in self.balas:
+            for asteroide in lista_ast:
+                if  bala.verificar_colision_asteroide(asteroide):
+                    lista_aux.append(bala)
+                    asteroide.asteroide_rect.x = 1300
+                    asteroide.asteroide_rect.y = random.randrange(0,700,70)
+                    asteroide.velocidad+=random.randrange(0,2,1)
 
+        for e in lista_aux:
+             self.balas.remove(e)   
+        
+    
     def actualizar_movimientoY(self,mov_y):
          new_y = self.nave_rect.y+ mov_y
          if new_y > 0 and new_y < 650:

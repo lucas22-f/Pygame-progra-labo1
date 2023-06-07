@@ -7,8 +7,7 @@ class Asteroide:
         self.asteroide_rect = self.asteroide_imagen.get_rect()
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y
-        self.velocidad = random.randrange(1,2,2)
-        self.vida = 100
+        self.velocidad = random.randrange(1,15,2)
         self.daño = 20
 
     def crear_lista_ast(cant):
@@ -47,8 +46,7 @@ class Asteroide:
                 nave.nave_vida-=ast.daño
                 if nave.nave_vida <=0:
                     nave.nave_visible = False
-                print(f"vida nave : {nave.nave_vida}")
-                print(f"colision con el asteroide: {i+1} ") 
+                    nave.nave_vivo = False
             if ast.asteroide_rect.right < 0 or ast.asteroide_rect.left > 1230 or ast.asteroide_rect.bottom < 0 or ast.asteroide_rect.top > 700:
                 lista_colisionados[i] = False
 

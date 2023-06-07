@@ -12,6 +12,7 @@ class Nave:
         self.nave_rect.y = 300
         self.colision = False
         self.nave_visible = True
+        self.nave_vivo = True
         self.nave_vida = 300
         self.balas = []
 
@@ -27,21 +28,19 @@ class Nave:
                     self.balas.pop(i)
                     
     def disparar(self):
-         bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)
-         self.balas.append(bala)
+        if self.nave_vivo:
+            bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)
+            self.balas.append(bala)
         
     def verificar_colision_bala(self, lista_ast):# Verificar bug 2 asteroides juntos al mismo tiempo.
-        lista_aux = []
         for bala in self.balas:
             for asteroide in lista_ast:
                 if  bala.verificar_colision_asteroide(asteroide):
-                    lista_aux.append(bala)
                     asteroide.asteroide_rect.x = 1300
                     asteroide.asteroide_rect.y = random.randrange(0,700,70)
-                    asteroide.velocidad+=random.randrange(0,2,1)
-
-        for e in lista_aux:
-             self.balas.remove(e)   
+                    asteroide.velocidad+=random.randrange(0,10,1)
+                    bala.disparo_rect.x = 1300
+        
         
     
     def actualizar_movimientoY(self,mov_y):

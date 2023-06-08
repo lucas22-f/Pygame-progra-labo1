@@ -4,6 +4,8 @@ from Asteroide import Asteroide
 from Nave import Nave
 from Fondo import Fondo
 from Disparo import Disparo
+
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode([1280,720])
@@ -24,7 +26,6 @@ def main():
 
     #NAVE
     nave = Nave()
-
 
     ventana = True
 
@@ -51,6 +52,7 @@ def main():
                 if event.type == tick:
                     Asteroide.actualizar(lista_ast)
                     Fondo.actualizar_particulas(lista_particulas)
+                    barra_vida = nave.actualizar_vida(screen)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
@@ -59,9 +61,14 @@ def main():
         Fondo.dibujar_particulas(lista_particulas,screen)
         Nave.actualizar(nave,screen)
         Nave.verificar_colision_bala(nave,lista_ast)
-        Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
-        Asteroide.actualizar_pantalla(lista_ast,screen)
-      
+        if nave.nave_vida > 0:
+            Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
+            Asteroide.actualizar_pantalla(lista_ast,screen)
+            text_surface = barra_vida[1].render("Vida nave jugador 1", True, "White")
+            text_rect = text_surface.get_rect()
+            text_rect.center = (1130,50)
+            screen.blit(text_surface, text_rect)
+            screen.blit(barra_vida[0],(972,1))
 
         pygame.display.flip()
     pygame.quit()

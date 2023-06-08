@@ -9,6 +9,7 @@ class Asteroide:
         self.asteroide_rect.y = y
         self.velocidad = random.randrange(1,15,2)
         self.daño = 20
+        
 
     def crear_lista_ast(cant):
         lista_ast = []
@@ -44,10 +45,14 @@ class Asteroide:
                 #anteriormente para que al ejecutarse la colision se ejecute este bloque de codigo 1 vez
                 lista_colisionados[i] = True
                 nave.nave_vida-=ast.daño
+                ast.asteroide_rect.x = 1300
                 if nave.nave_vida <=0:
                     nave.nave_visible = False
                     nave.nave_vivo = False
-            if ast.asteroide_rect.right < 0 or ast.asteroide_rect.left > 1230 or ast.asteroide_rect.bottom < 0 or ast.asteroide_rect.top > 700:
+                    nave.nave_vida = 0
+                    
+                    
+            if ast.asteroide_rect.x > 1230:
                 lista_colisionados[i] = False
 
                

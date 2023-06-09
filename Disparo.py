@@ -5,6 +5,8 @@ class Disparo:
     def __init__(self,x,y) -> None:
         self.superficie_bala = pygame.Surface((10,5))
         self.superficie_bala.fill("White")
+        self.imagen = pygame.image.load("misil.png")
+        self.imagen = pygame.transform.scale(self.imagen,(50,20))
         self.disparo_rect = self.superficie_bala.get_rect()
         self.disparo_rect.y = y
         self.disparo_rect.x = x

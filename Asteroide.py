@@ -34,6 +34,7 @@ class Asteroide:
             screen.blit(ast.asteroide_imagen,ast.asteroide_rect)
 
     def crear_lista_colisionados(lista_ast):
+        
         lista_colisionados = []
         for e in range(len(lista_ast)):
             lista_colisionados.append(False)
@@ -41,7 +42,7 @@ class Asteroide:
 
     def verificar_colision(lista_ast,lista_colisionados,nave):
         for i,ast in enumerate(lista_ast):
-            if not lista_colisionados[i] and nave.nave_rect.colliderect(ast.asteroide_rect):#verifica en mi lista de colisionados si no fue colisionado 
+            if not lista_colisionados[i] and nave.col_rect.colliderect(ast.asteroide_rect):#verifica en mi lista de colisionados si no fue colisionado 
                 #anteriormente para que al ejecutarse la colision se ejecute este bloque de codigo 1 vez
                 lista_colisionados[i] = True
                 nave.nave_vida-=ast.daño

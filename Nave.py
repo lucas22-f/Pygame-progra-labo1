@@ -24,7 +24,7 @@ class Nave:
             for i,balas in enumerate(self.balas):
                 pygame.draw.rect(screen,(255,255,255),balas.disparo_rect)
                 balas.mover()
-                screen.blit(balas.superficie_bala, balas.disparo_rect)
+                screen.blit(balas.imagen, balas.disparo_rect)
                 if balas.disparo_rect.left < -10 or balas.disparo_rect.right > 1230:
                     self.balas.pop(i)
                     
@@ -34,14 +34,10 @@ class Nave:
             self.balas.append(bala)
     
     def actualizar_vida(self,screen):
-        retorno = []
+        
         barra_vida = pygame.Surface((self.nave_vida,30))
         barra_vida.fill("Green")
-
-        font = pygame.font.Font(None, 40)
-        retorno.append(barra_vida)
-        retorno.append(font)
-        return retorno
+        return barra_vida
     
     def verificar_colision_bala(self, lista_ast):
         for bala in self.balas:
@@ -53,13 +49,15 @@ class Nave:
                     bala.disparo_rect.x = 1300
            
     def actualizar_movimientoY(self,mov_y):
-         new_y = self.nave_rect.y+ mov_y
+         new_y = self.col_rect.y+ mov_y
          if new_y > 0 and new_y < 650:
+               self.col_rect.y+= mov_y
                self.nave_rect.y+= mov_y
 
     def actualizar_movimientoX(self,mov_x):
-         new_x = self.nave_rect.x+ mov_x
+         new_x = self.col_rect.x+ mov_x
          if new_x > 1100 and new_x < 1160:
+               self.col_rect.x+= mov_x
                self.nave_rect.x+= mov_x
 
 

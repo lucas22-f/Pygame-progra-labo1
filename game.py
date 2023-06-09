@@ -5,6 +5,12 @@ from Nave import Nave
 from Fondo import Fondo
 from Disparo import Disparo
 
+def render_interfaz_main(font,screen):
+    text_surface = font.render("Vida nave jugador 1", True, "White")
+    text_rect = text_surface.get_rect()
+    text_rect.center = (1130,50)
+    screen.blit(text_surface, text_rect)
+
 
 def main():
     pygame.init()
@@ -26,7 +32,7 @@ def main():
 
     #NAVE
     nave = Nave()
-
+    font = pygame.font.Font(None, 40)
     ventana = True
 
     while(ventana):
@@ -64,11 +70,8 @@ def main():
         if nave.nave_vida > 0:
             Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
             Asteroide.actualizar_pantalla(lista_ast,screen)
-            text_surface = barra_vida[1].render("Vida nave jugador 1", True, "White")
-            text_rect = text_surface.get_rect()
-            text_rect.center = (1130,50)
-            screen.blit(text_surface, text_rect)
-            screen.blit(barra_vida[0],(972,1))
+            render_interfaz_main(font,screen)
+            screen.blit(barra_vida,(972,1))
 
         pygame.display.flip()
     pygame.quit()

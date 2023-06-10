@@ -2,21 +2,19 @@
 
 ## Ultimo update
 
-Este es un juego desarrollado en Pygame que incluye las siguientes características:
-
-- **Interfaz básica:** El juego cuenta con una interfaz gráfica sencilla donde se muestra el escenario y los elementos del juego.
+- **Interfaz básica:** El juego cuenta con una interfaz gráfica sencilla donde se muestra el score el timer y la barra de salud 
 
 - **Fuente personalizada:** Se ha utilizado una fuente personalizada para mostrar el texto en el juego, lo que le da un estilo único y coherente con la temática del juego.
 
-- **Timer en segundos:** Se ha implementado un temporizador que cuenta los segundos transcurridos durante el juego. Esto permite tener una medida del tiempo que el jugador ha estado jugando.
+- **Timer en segundos:** Se ha implementado un temporizador Esto permite tener una medida del tiempo que el jugador ha estado jugando.
 
-- **Score:** Se ha incorporado un sistema de puntuación en el juego. El jugador puede acumular puntos al realizar ciertas acciones o logros en el juego, lo que añade un elemento de competitividad y motivación.
+- **Score:** Se ha incorporado un sistema de puntuación en el juego. destruyendo asteroides
 
-- **Imágenes para los proyectiles:** Los proyectiles del juego ahora cuentan con imágenes asociadas, lo que los hace más visuales y atractivos para el jugador. Esto ayuda a mejorar la experiencia visual del juego.
+- **Imágenes para los proyectiles:** Los proyectiles del juego ahora cuentan con imágenes asociadas, lo que los hace más visuales y atractivos para el jugador. 
 
-- **Rectángulo de colisión más preciso:** Se ha mejorado la precisión del rectángulo de colisión utilizado en el juego. Ahora, las detecciones de colisión entre objetos son más precisas y realistas, lo que brinda una experiencia de juego más satisfactoria.
+- **Rectángulo de colisión más preciso:** Se ha mejorado la precisión del rectángulo de colisión utilizado en el juego. Ahora, las detecciones de colisión entre objetos son más precisas y realistas
 
-- **Barra de vida actualizable:** Se ha agregado una barra de vida en el juego que representa la cantidad de vida o salud del jugador. Esta barra se actualiza de acuerdo con los eventos y acciones del juego que afectan la vida del jugador.
+- **Barra de vida actualizable:** Se ha agregado una barra de vida en el juego que representa la cantidad de vida o salud del jugador. la barra se actualiza si los asteroides chocan con la nave
 
 https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/81d75c9e-aed0-4dfd-b92e-4388ed9db5bc
 

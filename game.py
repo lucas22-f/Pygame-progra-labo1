@@ -5,10 +5,10 @@ from Nave import Nave
 from Fondo import Fondo
 from Disparo import Disparo
 
-def render_interfaz_main(font,screen):
-    text_surface = font.render("Vida nave jugador 1", True, "White")
+def render_font_interfaz_main(font,mensaje,screen,x,y):
+    text_surface = font.render(f"{mensaje}", True, "White")
     text_rect = text_surface.get_rect()
-    text_rect.center = (1130,50)
+    text_rect.center = (x,y)
     screen.blit(text_surface, text_rect)
 
 
@@ -20,6 +20,9 @@ def main():
     #TIMER
     tick = pygame.USEREVENT + 0 
     pygame.time.set_timer(tick,40)
+    tick_reloj_contador = 0
+    pygame.time.set_timer(tick_reloj_contador,1000)
+
 
     RELOJ = pygame.time.Clock()
     
@@ -32,15 +35,15 @@ def main():
 
     #NAVE
     nave = Nave()
-    font = pygame.font.Font(None, 40)
+    #Texto Vida nave
+    font = pygame.font.Font("SPACESUI.TTF", 30)
+    barra_vida = pygame.Surface((nave.nave_vida,30))
     ventana = True
-
+    contador = 0
     while(ventana):
         
         RELOJ.tick(60)
-
         lista_teclas = pygame.key.get_pressed()
-
         if lista_teclas[pygame.K_UP]:
             Nave.actualizar_movimientoY(nave,-12)
         if lista_teclas[pygame.K_DOWN]:
@@ -58,7 +61,8 @@ def main():
                 if event.type == tick:
                     Asteroide.actualizar(lista_ast)
                     Fondo.actualizar_particulas(lista_particulas)
-                    barra_vida = nave.actualizar_vida(screen)
+                    barra_vida = nave.actualizar_vida()
+                                        
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
@@ -70,8 +74,11 @@ def main():
         if nave.nave_vida > 0:
             Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
             Asteroide.actualizar_pantalla(lista_ast,screen)
-            render_interfaz_main(font,screen)
-            screen.blit(barra_vida,(972,1))
+            render_font_interfaz_main(font,"Vida",screen,1130,62)
+            render_font_interfaz_main(font,f"score  {nave.score}",screen,200,62)
+            contador+=1/60
+            screen.blit(barra_vida,(972,8))
+            render_font_interfaz_main(font,f"{int(contador)}",screen,600,62)
 
         pygame.display.flip()
     pygame.quit()

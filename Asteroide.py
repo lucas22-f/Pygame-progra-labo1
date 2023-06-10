@@ -8,7 +8,7 @@ class Asteroide:
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y
         self.velocidad = random.randrange(1,15,2)
-        self.daño = 20
+        self.daño = 50
         
 
     def crear_lista_ast(cant):
@@ -26,11 +26,11 @@ class Asteroide:
             rect_ast.y = rect_ast.y + random.randrange(-1,2,1)
             if rect_ast.x > 1230:
                 rect_ast.x = random.randrange(-300,0,82)
-                rect_ast.y = random.randrange(0,700,82)
+                rect_ast.y = random.randrange(50,650,82)
             
     def actualizar_pantalla(lista_ast,screen):
         for ast in lista_ast:
-            pygame.draw.rect(screen,(250,0,0),ast.asteroide_rect) 
+            
             screen.blit(ast.asteroide_imagen,ast.asteroide_rect)
 
     def crear_lista_colisionados(lista_ast):

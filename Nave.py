@@ -16,16 +16,15 @@ class Nave:
         self.nave_vivo = True
         self.nave_vida = 300
         self.balas = []
+        self.score = 0
 
     def actualizar(self,screen):
             if self.nave_visible:
-                pygame.draw.rect(screen,(0,250,0),self.col_rect)
                 screen.blit(self.nave_imagen,self.nave_rect)
             for i,balas in enumerate(self.balas):
-                pygame.draw.rect(screen,(255,255,255),balas.disparo_rect)
                 balas.mover()
                 screen.blit(balas.imagen, balas.disparo_rect)
-                if balas.disparo_rect.left < -10 or balas.disparo_rect.right > 1230:
+                if balas.disparo_rect.left < -10 or balas.disparo_rect.right > 1330:
                     self.balas.pop(i)
                     
     def disparar(self):
@@ -33,11 +32,13 @@ class Nave:
             bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)
             self.balas.append(bala)
     
-    def actualizar_vida(self,screen):
-        
+    def actualizar_vida(self):
         barra_vida = pygame.Surface((self.nave_vida,30))
         barra_vida.fill("Green")
         return barra_vida
+    
+    def actualizar_score(self):
+         self.score+= 50
     
     def verificar_colision_bala(self, lista_ast):
         for bala in self.balas:
@@ -47,10 +48,11 @@ class Nave:
                     asteroide.asteroide_rect.y = random.randrange(0,700,70)
                     asteroide.velocidad+=random.randrange(0,10,1)
                     bala.disparo_rect.x = 1300
+                    self.actualizar_score()
            
     def actualizar_movimientoY(self,mov_y):
          new_y = self.col_rect.y+ mov_y
-         if new_y > 0 and new_y < 650:
+         if new_y > 90 and new_y < 650:
                self.col_rect.y+= mov_y
                self.nave_rect.y+= mov_y
 

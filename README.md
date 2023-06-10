@@ -1,16 +1,39 @@
 # Viaje de la nave humilde 
--Ultimo update : Se agregan colisiones de las balas contra los asteroides y cambio de fondo
+
+## Ultimo update
+
+Este es un juego desarrollado en Pygame que incluye las siguientes características:
+
+- **Interfaz básica:** El juego cuenta con una interfaz gráfica sencilla donde se muestra el escenario y los elementos del juego.
+
+- **Fuente personalizada:** Se ha utilizado una fuente personalizada para mostrar el texto en el juego, lo que le da un estilo único y coherente con la temática del juego.
+
+- **Timer en segundos:** Se ha implementado un temporizador que cuenta los segundos transcurridos durante el juego. Esto permite tener una medida del tiempo que el jugador ha estado jugando.
+
+- **Score:** Se ha incorporado un sistema de puntuación en el juego. El jugador puede acumular puntos al realizar ciertas acciones o logros en el juego, lo que añade un elemento de competitividad y motivación.
+
+- **Imágenes para los proyectiles:** Los proyectiles del juego ahora cuentan con imágenes asociadas, lo que los hace más visuales y atractivos para el jugador. Esto ayuda a mejorar la experiencia visual del juego.
+
+- **Rectángulo de colisión más preciso:** Se ha mejorado la precisión del rectángulo de colisión utilizado en el juego. Ahora, las detecciones de colisión entre objetos son más precisas y realistas, lo que brinda una experiencia de juego más satisfactoria.
+
+- **Barra de vida actualizable:** Se ha agregado una barra de vida en el juego que representa la cantidad de vida o salud del jugador. Esta barra se actualiza de acuerdo con los eventos y acciones del juego que afectan la vida del jugador.
+
+https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/81d75c9e-aed0-4dfd-b92e-4388ed9db5bc
+
+
+##Ultimo update : Se agregan colisiones de las balas contra los asteroides y cambio de fondo
 
 https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/cb991397-550a-487f-9565-811534699059
 
 ![image](https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/059abc98-2201-448d-b28a-8c70f653ca5c)
 
 
--Ultimo update : Se agrego metodo disparo junto con la colision de nave-asteroide
+##Ultimo update : Se agrego metodo disparo junto con la colision de nave-asteroide
 
 https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/6c9d45bc-4292-44ee-9ce5-ef8968b8b1d8
 
 
+##Primer update
 -Se agregaron clases y funcionamiento basico. 
 
 ![image](https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/397f5f88-0a62-470e-a78b-57cc1b6fc536)

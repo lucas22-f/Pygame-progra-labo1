@@ -7,7 +7,7 @@ class Asteroide:
         self.asteroide_rect = self.asteroide_imagen.get_rect()
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y
-        self.velocidad = random.randrange(1,15,2)
+        self.velocidad = random.randrange(1,10,2)
         self.daño = 50
         
 

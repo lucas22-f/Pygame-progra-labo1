@@ -29,7 +29,7 @@ class Nave:
                     
     def disparar(self):
         if self.nave_vivo:
-            bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery)
+            bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery,False)
             self.balas.append(bala)
     
     def actualizar_vida(self):
@@ -46,8 +46,8 @@ class Nave:
                 if  bala.verificar_colision_asteroide(asteroide):
                     asteroide.asteroide_rect.x = 1300
                     asteroide.asteroide_rect.y = random.randrange(0,700,70)
-                    asteroide.velocidad+=random.randrange(0,10,1)
-                    bala.disparo_rect.x = 1300
+                    asteroide.velocidad+=random.randrange(0,5,1)
+                    bala.disparo_rect.x = 1400
                     self.actualizar_score()
            
     def actualizar_movimientoY(self,mov_y):

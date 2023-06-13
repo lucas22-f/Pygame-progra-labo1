@@ -2,18 +2,26 @@ import pygame
 import random
 class Disparo:
 
-    def __init__(self,x,y) -> None:
+    def __init__(self,x,y,enemy="") -> None:
         self.superficie_bala = pygame.Surface((10,5))
         self.superficie_bala.fill("White")
-        self.imagen = pygame.image.load("misil.png")
-        self.imagen = pygame.transform.scale(self.imagen,(55,25))
+        self.imagen = pygame.image.load("bullet.png")
+        self.imagen = pygame.transform.scale(self.imagen,(35,15))
+        self.e_imagen = pygame.image.load("e_bullet.png")
+        self.e_imagen = pygame.transform.scale(self.e_imagen,(100,55))
         self.disparo_rect = self.imagen.get_rect()
         self.disparo_rect.y = y
         self.disparo_rect.x = x
         self.disparo_daño = 25
+        self.enemy = enemy
+        self.direccion = "izquierda"
 
     def mover(self):
-        self.disparo_rect.x -= 10
+        if self.enemy:
+            self.disparo_rect.x += 15
+        else:
+             self.disparo_rect.x -= 15
+     
 
     def verificar_colision_asteroide(self, asteroide):
         if self.disparo_rect.colliderect(asteroide.asteroide_rect):

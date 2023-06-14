@@ -22,11 +22,18 @@ class Enemy:
         pygame.draw.rect(screen,(255,0,0),self.col_rect)
         screen.blit(self.nave_imagen,self.nave_rect)
         self.mover_enemy()
-        for e in self.balas:
+        cont = 0
+        for i,e in enumerate(self.balas):
             e.mover()
             screen.blit(e.e_imagen,e.disparo_rect)
+            if e.disparo_rect.x > 1339  or e.disparo_rect.x < -10:
+                    self.balas.pop(i)
+                    print(len(self.balas))
+       
+       
 
-    def disparar_enemy(self,screen):
+
+    def disparar_enemy(self):
         bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery,True)
         self.balas.append(bala)  
 

@@ -41,7 +41,6 @@ def main():
 
     #Enemigo
     enemy = Enemy()
-    enemy.disparar_enemy(screen)
     while(ventana):
         
         RELOJ.tick(60)
@@ -61,13 +60,15 @@ def main():
                 ventana = False
             if event.type == pygame.USEREVENT:
                 if event.type == tick:
-                    
-                    enemy.disparar_enemy(screen)
-                                        
+                    enemy.disparar_enemy()          
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
+
+
         screen.fill("Black")
+
+        
         Asteroide.actualizar(lista_ast)
         Fondo.actualizar_particulas(lista_particulas)
         barra_vida = nave.actualizar_vida()

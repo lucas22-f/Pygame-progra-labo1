@@ -24,7 +24,7 @@ class Nave:
             for i,balas in enumerate(self.balas):
                 balas.mover()
                 screen.blit(balas.imagen, balas.disparo_rect)
-                if balas.disparo_rect.left < -10 or balas.disparo_rect.right > 1330:
+                if balas.disparo_rect.x < -10 or balas.disparo_rect.x > 1330:
                     self.balas.pop(i)
                     
     def disparar(self):

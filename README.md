@@ -1,4 +1,10 @@
 # Viaje de la nave humilde 
+## Ultimo Update
+
+![image](https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/895b5bf8-bd65-43d8-bb02-807a43ed6cfc)
+
+se agrega nave enemiga con su movimiento y sus metodos para el disparo.
+
 
 ## Ultimo update
 

@@ -3,7 +3,7 @@ import random
 class Asteroide:
     def __init__(self,x,y) -> None:
         #Asteroide
-        self.asteroide_imagen = pygame.image.load("roca.png")
+        self.asteroide_imagen = pygame.image.load("./imagenes/roca.png")
         self.asteroide_rect = self.asteroide_imagen.get_rect()
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y

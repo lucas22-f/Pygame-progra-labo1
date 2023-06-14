@@ -5,7 +5,7 @@ from Disparo import Disparo
 
 class Enemy:
     def __init__(self) -> None:
-        self.nave_imagen = pygame.image.load("enemy.png")
+        self.nave_imagen = pygame.image.load("./imagenes/enemy.png")
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 100
         self.nave_rect.y = 300
@@ -18,7 +18,7 @@ class Enemy:
         self.balas = []
         
 
-    def actualizar_enemy(self,screen):
+    def actualizar_enemy(self,screen,nave):
         pygame.draw.rect(screen,(255,0,0),self.col_rect)
         screen.blit(self.nave_imagen,self.nave_rect)
         self.mover_enemy()
@@ -26,11 +26,15 @@ class Enemy:
         for i,e in enumerate(self.balas):
             e.mover()
             screen.blit(e.e_imagen,e.disparo_rect)
+            self.verificar_colision_bala_enemigo(nave,e)
             if e.disparo_rect.x > 1339  or e.disparo_rect.x < -10:
                     self.balas.pop(i)
-                    print(len(self.balas))
-       
-       
+                    #print(len(self.balas))
+
+    def verificar_colision_bala_enemigo(self,nave,bala):
+        if nave.col_rect.colliderect(bala.disparo_rect):
+            print("Choque salchicha")
+
 
 
     def disparar_enemy(self):

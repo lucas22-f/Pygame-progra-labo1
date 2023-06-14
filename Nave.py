@@ -5,7 +5,7 @@ from Asteroide import Asteroide
 
 class Nave:
     def __init__(self) -> None:
-        self.nave_imagen = pygame.image.load("nave.png")
+        self.nave_imagen = pygame.image.load("./imagenes/nave.png")
         self.nave_imagen = pygame.transform.scale(self.nave_imagen,(120,70))
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 1100

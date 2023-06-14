@@ -33,7 +33,7 @@ def main():
     #NAVE
     nave = Nave()
     #Texto Vida nave
-    font = pygame.font.Font("SPACESUI.TTF", 30)
+    font = pygame.font.Font("./fuentes/SPACESUI.TTF", 30)
     barra_vida = pygame.Surface((nave.nave_vida,30))
     ventana = True
     contador = 0
@@ -75,7 +75,7 @@ def main():
         Fondo.dibujar_particulas(lista_particulas,screen)
         Nave.actualizar(nave,screen)
         Nave.verificar_colision_bala(nave,lista_ast)
-        Enemy.actualizar_enemy(enemy,screen)
+        Enemy.actualizar_enemy(enemy,screen,nave)
         if nave.nave_vida > 0:
             Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
             Asteroide.actualizar_pantalla(lista_ast,screen)

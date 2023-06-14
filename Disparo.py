@@ -5,9 +5,9 @@ class Disparo:
     def __init__(self,x,y,enemy="") -> None:
         self.superficie_bala = pygame.Surface((10,5))
         self.superficie_bala.fill("White")
-        self.imagen = pygame.image.load("bullet.png")
+        self.imagen = pygame.image.load("./imagenes/bullet.png")
         self.imagen = pygame.transform.scale(self.imagen,(35,15))
-        self.e_imagen = pygame.image.load("e_bullet.png")
+        self.e_imagen = pygame.image.load("./imagenes/e_bullet.png")
         self.e_imagen = pygame.transform.scale(self.e_imagen,(100,55))
         self.disparo_rect = self.imagen.get_rect()
         self.disparo_rect.y = y

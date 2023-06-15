@@ -2,7 +2,8 @@ import random
 import pygame
 from Disparo import Disparo
 from Asteroide import Asteroide
-
+pygame.mixer.init()
+sound = pygame.mixer.Sound("disp.mp3")
 class Nave:
     def __init__(self) -> None:
         self.nave_imagen = pygame.image.load("./imagenes/nave.png")
@@ -10,27 +11,44 @@ class Nave:
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 1100
         self.nave_rect.y = 300
-        self.col_rect =pygame.Rect(1050+120/2,300+20,100,30)
+        self.col_rect =pygame.Rect(1050+60,300+20,100,40)
         self.colision = False
         self.nave_visible = True
         self.nave_vivo = True
         self.nave_vida = 300
         self.balas = []
         self.score = 0
+       
 
-    def actualizar(self,screen):
+    def actualizar(self,screen,enemigo):
+            
             if self.nave_visible:
                 screen.blit(self.nave_imagen,self.nave_rect)
             for i,balas in enumerate(self.balas):
                 balas.mover()
+                #pygame.draw.rect(screen,"White",balas.disparo_rect)
                 screen.blit(balas.imagen, balas.disparo_rect)
+                
+                if self.verificar_colision_nave_enemigo(balas,enemigo):
+                    enemigo.nave_vida-=30
+                    balas.disparo_rect.x = 1400
+                    if enemigo.nave_vida <=0:
+                         self.score+=300
+                    
+                    #print("colisiono")
+                    #print(enemigo.nave_vida)
+                    
+                
                 if balas.disparo_rect.x < -10 or balas.disparo_rect.x > 1330:
                     self.balas.pop(i)
                     
     def disparar(self):
+       
         if self.nave_vivo:
             bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery,False)
             self.balas.append(bala)
+            sound.play()
+            
     
     def actualizar_vida(self):
         barra_vida = pygame.Surface((self.nave_vida,30))
@@ -38,8 +56,8 @@ class Nave:
         return barra_vida
     
     def actualizar_score(self):
-         self.score+= 50
-    
+         self.score+= 50 
+
     def verificar_colision_bala(self, lista_ast):
         for bala in self.balas:
             for asteroide in lista_ast:
@@ -49,7 +67,12 @@ class Nave:
                     asteroide.velocidad+=random.randrange(0,5,1)
                     bala.disparo_rect.x = 1400
                     self.actualizar_score()
-           
+
+    def verificar_colision_nave_enemigo(self,bala,enemigo):
+        if enemigo.col_rect.colliderect(bala.disparo_rect):
+            return True
+        return False
+       
     def actualizar_movimientoY(self,mov_y):
          new_y = self.col_rect.y+ mov_y
          if new_y > 90 and new_y < 650:

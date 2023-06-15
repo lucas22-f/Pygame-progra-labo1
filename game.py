@@ -16,7 +16,11 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode([1280,720])
     pygame.display.set_caption("My game","jueguito")
-
+    pygame.mixer.init()
+    sonido = pygame.mixer.Sound("fondo.mp3")
+    sonido.set_volume(0.15)
+    sonido2 = pygame.mixer.Sound("music.mp3")
+    sonido2.set_volume(0.15)
     #TIMER
     tick = pygame.USEREVENT + 0 
     pygame.time.set_timer(tick,400)
@@ -41,6 +45,7 @@ def main():
 
     #Enemigo
     enemy = Enemy()
+    sonido2.play(1)
     while(ventana):
         
         RELOJ.tick(60)
@@ -60,7 +65,8 @@ def main():
                 ventana = False
             if event.type == pygame.USEREVENT:
                 if event.type == tick:
-                    enemy.disparar_enemy()          
+                    enemy.disparar_enemy()   
+                    #enemy.respawn_nave_enemiga()       
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
@@ -68,13 +74,15 @@ def main():
 
         screen.fill("Black")
 
+        sonido.play(1)
         
+
         Asteroide.actualizar(lista_ast)
         Fondo.actualizar_particulas(lista_particulas)
         barra_vida = nave.actualizar_vida()
         Fondo.dibujar_particulas(lista_particulas,screen)
-        Nave.actualizar(nave,screen)
         Nave.verificar_colision_bala(nave,lista_ast)
+        Nave.actualizar(nave,screen,enemy)
         Enemy.actualizar_enemy(enemy,screen,nave)
         if nave.nave_vida > 0:
             Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)

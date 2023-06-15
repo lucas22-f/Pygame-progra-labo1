@@ -12,6 +12,7 @@ class Disparo:
         self.disparo_rect = self.imagen.get_rect()
         self.disparo_rect.y = y
         self.disparo_rect.x = x
+        self.disparo_e_rect = pygame.Rect(x+50,y+25,20,10)
         self.disparo_daño = 25
         self.enemy = enemy
         self.direccion = "izquierda"
@@ -19,8 +20,10 @@ class Disparo:
     def mover(self):
         if self.enemy:
             self.disparo_rect.x += 15
+            self.disparo_e_rect.x += 15
         else:
              self.disparo_rect.x -= 15
+             self.disparo_e_rect.x -= 15
      
 
     def verificar_colision_asteroide(self, asteroide):

@@ -51,6 +51,7 @@ class Asteroide:
                     nave.nave_visible = False
                     nave.nave_vivo = False
                     nave.nave_vida = 0
+                    nave.col_rect.x = 1400
                     
                     
             if ast.asteroide_rect.x > 1230:

@@ -1,11 +1,10 @@
 import pygame
-from Asteroide import Asteroide
-from Nave import Nave
-from Fondo import Fondo
-from Enemy import Enemy
+from Objetos.Asteroide import Asteroide
+from Objetos.Nave import Nave
+from Objetos.Fondo import Fondo
+from Objetos.Enemy import Enemy
 from funciones import *
-
-from test import menu
+from scenes.main import menu
 
 pygame.init()
 

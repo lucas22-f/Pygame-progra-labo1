@@ -1,8 +1,8 @@
 import pygame
-from Asteroide import Asteroide
-from Nave import Nave
-from Fondo import Fondo
-from Enemy import Enemy
+from Objetos.Asteroide import Asteroide
+from Objetos.Nave import Nave
+from Objetos.Fondo import Fondo
+from Objetos.Enemy import Enemy
 from constantes import *
 
 def set_game_run(lista_ast,nave,lista_particulas,screen,enemy):

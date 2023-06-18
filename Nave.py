@@ -3,10 +3,26 @@ import pygame
 from Disparo import Disparo
 from Asteroide import Asteroide
 pygame.mixer.init()
-sound = pygame.mixer.Sound("disp.mp3")
+
+rock= pygame.mixer.Sound("./sounds/rock_coll.mp3")
+rock.set_volume(0.1)
+rock.play()
+rock.stop()
+
+
+sound = pygame.mixer.Sound("./sounds/disp.mp3")
+sound.set_volume(0.5)
+sound.play()
+sound.stop()
+
+golpe_bala = pygame.mixer.Sound("./sounds/golpe_bala.mp3")
+golpe_bala.set_volume(0.1)
+golpe_bala.play()
+golpe_bala.stop()
+
 class Nave:
     def __init__(self) -> None:
-        self.nave_imagen = pygame.image.load("./imagenes/nave.png")
+        self.nave_imagen = pygame.image.load("./images/nave.png")
         self.nave_imagen = pygame.transform.scale(self.nave_imagen,(120,70))
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 1100
@@ -30,7 +46,9 @@ class Nave:
                 screen.blit(balas.imagen, balas.disparo_rect)
                 
                 if self.verificar_colision_nave_enemigo(balas,enemigo):
+                    golpe_bala.play()
                     enemigo.nave_vida-=30
+                 
                     balas.disparo_rect.x = 1400
                     if enemigo.nave_vida <=0:
                          self.score+=300
@@ -45,9 +63,13 @@ class Nave:
     def disparar(self):
        
         if self.nave_vivo:
+            
             bala = Disparo(self.nave_rect.centerx,self.nave_rect.centery,False)
-            self.balas.append(bala)
             sound.play()
+            self.balas.append(bala)
+         
+            
+            
             
     
     def actualizar_vida(self):
@@ -62,6 +84,7 @@ class Nave:
         for bala in self.balas:
             for asteroide in lista_ast:
                 if  bala.verificar_colision_asteroide(asteroide):
+                    rock.play()
                     asteroide.asteroide_rect.x = 1300
                     asteroide.asteroide_rect.y = random.randrange(0,700,70)
                     asteroide.velocidad+=random.randrange(0,5,1)

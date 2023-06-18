@@ -2,11 +2,14 @@ import random
 
 import pygame
 from Disparo import Disparo
-
+golpe_bala = pygame.mixer.Sound("./sounds/golpe_bala_2.mp3")
+golpe_bala.set_volume(0.1)
+golpe_bala.play()
+golpe_bala.stop()
 
 class Enemy:
     def __init__(self) -> None:
-        self.nave_imagen = pygame.image.load("./imagenes/enemy.png")
+        self.nave_imagen = pygame.image.load("./images/enemy.png")
         self.nave_rect = self.nave_imagen.get_rect()
         self.nave_rect.x = 100
         self.nave_rect.y = 300
@@ -56,11 +59,13 @@ class Enemy:
             
             if self.verificar_colision_bala_enemigo(nave,e):
                 nave.nave_vida-=20
+                golpe_bala.play()
                 if nave.nave_vida <=0:
                     nave.nave_visible = False
                     nave.nave_vivo = False
                     nave.nave_vida = 0
                     nave.col_rect.x = 1400
+                    nave.col_rect.y = 900
                 self.balas.pop(i)
             if e.disparo_rect.x > 1339  or e.disparo_rect.x < -10:
                     self.balas.pop(i)
@@ -69,9 +74,6 @@ class Enemy:
     def imprimir_enemigo(self,enemigos,screen,nave):
         for enemigo in enemigos:
             enemigo.actualizar_enemy(screen, nave)
-
-       
-
 
     def verificar_colision_bala_enemigo(self,nave,bala):
         if nave.col_rect.colliderect(bala.disparo_e_rect):

@@ -1,100 +1,95 @@
 import pygame
-import random
 from Asteroide import Asteroide
 from Nave import Nave
 from Fondo import Fondo
-from Disparo import Disparo
 from Enemy import Enemy
-def render_font_interfaz_main(font,mensaje,screen,x,y):
-    text_surface = font.render(f"{mensaje}", True, "White")
-    text_rect = text_surface.get_rect()
-    text_rect.center = (x,y)
-    screen.blit(text_surface, text_rect)
+from funciones import *
+
+from test import menu
+
+pygame.init()
+
+#--------- INICIALIZAR VARIABLES ------------
+
+# Screen
+screen = set_up_screen()
+# Timers
+tick = set_timers()
+# ASTEROIDES
+lista_ast = Asteroide.crear_lista_ast(8)
+# colisiones asteroide - nave
+lista_colisionados = Asteroide.crear_lista_colisionados(lista_ast)
+# Particulas
+lista_particulas = Fondo.crear_lista_particulas(100)
+# NAVE
+nave = Nave()
+# Texto Vida nave
+font = pygame.font.Font("./fonts/SPACESUI.TTF", 30)
+# Vida Nave
+barra_vida = pygame.Surface((nave.nave_vida, 30))
+# Enemigo
+enemy = Enemy()
+# Sonidos
+setup_main_sounds()
 
 
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode([1280,720])
-    pygame.display.set_caption("My game","jueguito")
-    pygame.mixer.init()
-    sonido = pygame.mixer.Sound("fondo.mp3")
-    sonido.set_volume(0.15)
-    sonido2 = pygame.mixer.Sound("music.mp3")
-    sonido2.set_volume(0.15)
-    #TIMER
-    tick = pygame.USEREVENT + 0 
-    pygame.time.set_timer(tick,400)
+
+#----------Variables booleanas y contadores----------
+ventana = True
+contador = 0
+
+
+#----------BUCLE PRINCIPAL_-----------------
+while (ventana):
+
     
-    RELOJ = pygame.time.Clock()
-    
-    #ASTEROIDES
-    lista_ast = Asteroide.crear_lista_ast(8)
-    #colisiones asteroide - nave
-    lista_colisionados = Asteroide.crear_lista_colisionados(lista_ast)
-    #Particulas
-    lista_particulas = Fondo.crear_lista_particulas(100)
 
-    #NAVE
-    nave = Nave()
-    #Texto Vida nave
-    font = pygame.font.Font("./fuentes/SPACESUI.TTF", 30)
-    barra_vida = pygame.Surface((nave.nave_vida,30))
-    ventana = True
-    contador = 0
-
-
-    #Enemigo
-    enemy = Enemy()
-    sonido2.play(1)
-    while(ventana):
+    if OPCION == 0:
         
+        OPCION = menu(lista_particulas)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                ventana = False    
+
+
+    elif OPCION == 1:
+        #set FPS
         RELOJ.tick(60)
+
+
+        #Manejo Teclas Movimiento
         lista_teclas = pygame.key.get_pressed()
         if lista_teclas[pygame.K_UP]:
-            Nave.actualizar_movimientoY(nave,-7)
+            Nave.actualizar_movimientoY(nave, -7)
         if lista_teclas[pygame.K_DOWN]:
-            Nave.actualizar_movimientoY(nave,7)
+            Nave.actualizar_movimientoY(nave, 7)
         if lista_teclas[pygame.K_LEFT]:
-            Nave.actualizar_movimientoX(nave,-7)
+                Nave.actualizar_movimientoX(nave, -7)
         if lista_teclas[pygame.K_RIGHT]:
-            Nave.actualizar_movimientoX(nave,7)
+            Nave.actualizar_movimientoX(nave, 7)
 
+
+        #Manejo Eventos
         for event in pygame.event.get():
-            
             if event.type == pygame.QUIT:
                 ventana = False
             if event.type == pygame.USEREVENT:
                 if event.type == tick:
-                    enemy.disparar_enemy()   
-                    #enemy.respawn_nave_enemiga()       
+                    enemy.disparar_enemy()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     Nave.disparar(nave)
 
-
+        #Color - Fondo
         screen.fill("Black")
 
-        sonido.play(1)
-        
-
-        Asteroide.actualizar(lista_ast)
-        Fondo.actualizar_particulas(lista_particulas)
+        #Func run
+        set_game_run(lista_ast,nave,lista_particulas,screen,enemy)
         barra_vida = nave.actualizar_vida()
-        Fondo.dibujar_particulas(lista_particulas,screen)
-        Nave.verificar_colision_bala(nave,lista_ast)
-        Nave.actualizar(nave,screen,enemy)
-        Enemy.actualizar_enemy(enemy,screen,nave)
+
+        #Func interface
         if nave.nave_vida > 0:
-            Asteroide.verificar_colision(lista_ast,lista_colisionados,nave)
-            Asteroide.actualizar_pantalla(lista_ast,screen)
-            render_font_interfaz_main(font,"Vida",screen,1130,62)
-            render_font_interfaz_main(font,f"score  {nave.score}",screen,200,62)
-            contador+=1/60
-            screen.blit(barra_vida,(972,8))
-            render_font_interfaz_main(font,f"{int(contador)}",screen,600,62)
-                
+            set_game_interface(lista_ast,lista_colisionados,nave,screen,font,contador,barra_vida)
 
-
-        pygame.display.flip()
-    pygame.quit()
-main()
+    pygame.display.flip()
+pygame.quit()

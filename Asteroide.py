@@ -1,13 +1,19 @@
 import pygame
 import random
+pygame.mixer.init()
+sound = pygame.mixer.Sound("./sounds/crash.mp3")
+sound.set_volume(0.2)
+sound.play()
+sound.stop()
+
 class Asteroide:
     def __init__(self,x,y) -> None:
         #Asteroide
-        self.asteroide_imagen = pygame.image.load("./imagenes/roca.png")
+        self.asteroide_imagen = pygame.image.load("./images/roca.png")
         self.asteroide_rect = self.asteroide_imagen.get_rect()
         self.asteroide_rect.x = x
         self.asteroide_rect.y = y
-        self.velocidad = random.randrange(1,10,2)
+        self.velocidad = random.randrange(1,3,1)
         self.daño = 50
         
 
@@ -24,9 +30,11 @@ class Asteroide:
             rect_ast = ast.asteroide_rect
             rect_ast.x = rect_ast.x + ast.velocidad
             rect_ast.y = rect_ast.y + random.randrange(-1,2,1)
+            
             if rect_ast.x > 1230:
                 rect_ast.x = random.randrange(-300,0,82)
                 rect_ast.y = random.randrange(50,650,82)
+            
             
     def actualizar_pantalla(lista_ast,screen):
         for ast in lista_ast:
@@ -45,6 +53,7 @@ class Asteroide:
             if not lista_colisionados[i] and nave.col_rect.colliderect(ast.asteroide_rect):#verifica en mi lista de colisionados si no fue colisionado 
                 #anteriormente para que al ejecutarse la colision se ejecute este bloque de codigo 1 vez
                 lista_colisionados[i] = True
+                sound.play()
                 nave.nave_vida-=ast.daño
                 ast.asteroide_rect.x = 1300
                 if nave.nave_vida <=0:
@@ -52,6 +61,7 @@ class Asteroide:
                     nave.nave_vivo = False
                     nave.nave_vida = 0
                     nave.col_rect.x = 1400
+                    nave.col_rect.y = 1200
                     
                     
             if ast.asteroide_rect.x > 1230:

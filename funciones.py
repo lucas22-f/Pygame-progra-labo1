@@ -13,20 +13,19 @@ def set_game_run(lista_ast,nave,lista_particulas,screen,enemy):
     Nave.actualizar(nave, screen, enemy)
     Enemy.actualizar_enemy(enemy, screen, nave)
 
-def set_game_interface(lista_ast,lista_colisionados,nave,screen,font,contador,barra_vida):
+def set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida):
 
 
     Asteroide.verificar_colision(lista_ast, lista_colisionados, nave)
     Asteroide.actualizar_pantalla(lista_ast, screen)
     render_font_interfaz_main(font, "Vida", screen, 1130, 62)
     render_font_interfaz_main(font, f"score  {nave.score}", screen, 200, 62)
-    contador += 1/60
     screen.blit(barra_vida, (972, 8))
-    render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62)
+    
 
 def set_up_screen():
     screen = pygame.display.set_mode([ANCHO, ALTO])
-    pygame.display.set_caption("My game", "jueguito")
+    pygame.display.set_caption(GAME_NAME, GAME_NAME)
     return screen
 def set_up_fondo(lista_particulas,screen):
     Fondo.actualizar_particulas(lista_particulas)
@@ -50,7 +49,7 @@ def setup_main_sounds():
     sonido = pygame.mixer.Sound("./sounds/fondo.mp3")
     sonido.set_volume(0.15)
     sonido2 = pygame.mixer.Sound("./sounds/music.mp3")
-    sonido2.set_volume(0.055)
+    sonido2.set_volume(0.15)
     if OPCION == 0:
         sonido2.play(1)
     elif OPCION == 1:

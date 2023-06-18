@@ -1,7 +1,7 @@
 import random
 import pygame
-from Disparo import Disparo
-from Asteroide import Asteroide
+from Objetos.Disparo import Disparo
+from Objetos.Asteroide import Asteroide
 pygame.mixer.init()
 
 rock= pygame.mixer.Sound("./sounds/rock_coll.mp3")
@@ -11,7 +11,7 @@ rock.stop()
 
 
 sound = pygame.mixer.Sound("./sounds/disp.mp3")
-sound.set_volume(0.5)
+sound.set_volume(0.8)
 sound.play()
 sound.stop()
 

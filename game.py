@@ -41,15 +41,11 @@ contador = 0
 #----------BUCLE PRINCIPAL_-----------------
 while (ventana):
 
-    
-
-    if OPCION == 0:
-        
+    if OPCION == 0:        
         OPCION = menu(lista_particulas)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 ventana = False    
-
 
     elif OPCION == 1:
         #set FPS
@@ -88,7 +84,8 @@ while (ventana):
 
         #Func interface
         if nave.nave_vida > 0:
-            set_game_interface(lista_ast,lista_colisionados,nave,screen,font,contador,barra_vida)
-
+            set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
+            contador += 1/60
+            render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62)
     pygame.display.flip()
 pygame.quit()

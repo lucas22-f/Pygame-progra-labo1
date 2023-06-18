@@ -1,7 +1,7 @@
 import random
 
 import pygame
-from Disparo import Disparo
+from Objetos.Disparo import Disparo
 golpe_bala = pygame.mixer.Sound("./sounds/golpe_bala_2.mp3")
 golpe_bala.set_volume(0.1)
 golpe_bala.play()

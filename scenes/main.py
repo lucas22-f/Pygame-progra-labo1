@@ -50,6 +50,8 @@ def menu(lista_particulas):
                     input_string = ""
                     OPCION = 1
                     return OPCION 
+                elif event.key == K_LCTRL:
+                    print("PUNTAJES")
                 else:
                     # Agregar el carácter ingresado al string
                     input_string += event.unicode

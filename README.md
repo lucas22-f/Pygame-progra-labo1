@@ -1,4 +1,31 @@
-# Viaje de la nave humilde 
+# Space-Attack
+Introducción:
+--------------
+"Space Attack" es un emocionante juego de disparos en el espacio donde los jugadores asumen el papel de un  piloto espacial que debe enfrentarse a el boss alienigena y la lluvia de asteroides. El objetivo principal es lograr la mayor puntuación posible y alcanzar los niveles más altos.
+
+Características principales:
+---------------------------
+1. Música y efectos de sonido: El juego cuenta con una banda sonora envolvente y efectos de sonido realistas que mejoran la inmersión del jugador en el entorno espacial. La música y los efectos de sonido se sincronizan con las acciones del jugador y las interacciones con los enemigos.
+
+2. Niveles y comportamiento de la nave enemiga: El juego presenta una progresión por niveles, donde cada nivel se vuelve más desafiante. El boss alienígena tiene  un comportamiento único y estratégico, como movimientos evasivos y disparo continuo.
+
+3. Flujo de información con menús: El juego cuenta con un sistema de menús intuitivo que permite a los jugadores navegar fácilmente entre las diferentes opciones, como iniciar el juego, ver el ranking de puntajes y reintentar. 
+
+4. Base de datos para guardar la información de los jugadores: El juego utiliza una base de datos para almacenar y gestionar la información de los jugadores, incluyendo sus nombres, puntajes máximos y tiempos de juego. La base de datos garantiza que los puntajes se guarden de forma permanente y que los jugadores puedan competir por los primeros puestos en el ranking.
+
+5. Lógica para registrar solo los mayores puntajes de cada jugador: El juego implementa una lógica especial que registra y actualiza solo los puntajes más altos de cada jugador. Si un jugador obtiene un nuevo puntaje máximo, se actualiza en la base de datos, reemplazando el puntaje anterior.
+
+6. Ranking de puntajes: El juego muestra un ranking de puntajes en el que los jugadores pueden ver los nombres y puntajes máximos de los mejores jugadores. El ranking se actualiza automáticamente cada vez que se registra un nuevo puntaje máximo.
+
+Tecnologías utilizadas:
+------------------------
+El desarrollo del juego "Space Attack" ha utilizado una combinación de las siguientes tecnologías:
+
+1. Pygame: Se ha utilizado la biblioteca Pygame para desarrollar la interfaz gráfica del juego, manejar eventos, renderizar imágenes, reproducir música y efectos de sonido, y controlar la lógica del juego.
+
+2. SQLite: Se ha utilizado SQLite, un sistema de gestión de bases de datos ligero y de fácil integración, para almacenar y administrar la información de los jugadores, incluidos los nombres y puntajes máximos.
+
+3. Programación orientada a objetos (POO): El juego se ha desarrollado utilizando los principios de la programación orientada a objetos. Se han creado clases para representar los diferentes elementos del juego, como la nave del jugador, los enemigos, los proyectiles y los
 ## Ultimo Update
 
 ![image](https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/895b5bf8-bd65-43d8-bb02-807a43ed6cfc)

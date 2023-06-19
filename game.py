@@ -53,9 +53,6 @@ while (ventana):
     elif OPCION == 1:
         #set FPS
         RELOJ.tick(60)
-        print(nave.nave_vida)
-        print(OPCION)
-
 
         #Manejo Teclas Movimiento
         lista_teclas = pygame.key.get_pressed()
@@ -83,11 +80,11 @@ while (ventana):
         #Color - Fondo
         screen.fill("Black")
 
-        #Func run
+        #Funcion que actualiza los elementos del juego:
         set_game_run(lista_ast,nave,lista_particulas,screen,enemy)
         barra_vida = nave.actualizar_vida()
 
-        #Func interface
+        #Func que actualiza la interfas dependiendo la vida de la nave.
         if nave.nave_vida > 0:
             set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
             contador += 1/60
@@ -95,5 +92,6 @@ while (ventana):
         else:
             player = Player(globals.PLAYER_NAME,nave.score,int(contador))
             OPCION = reintentar(lista_particulas,player,nave,lista_ast)
+            
     pygame.display.flip()
 pygame.quit()

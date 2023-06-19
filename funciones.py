@@ -3,7 +3,7 @@ from Objetos.Asteroide import Asteroide
 from Objetos.Nave import Nave
 from Objetos.Fondo import Fondo
 from Objetos.Enemy import Enemy
-from constantes import *
+from globals import *
 
 def set_game_run(lista_ast,nave,lista_particulas,screen,enemy):
 

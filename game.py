@@ -3,9 +3,12 @@ from Objetos.Asteroide import Asteroide
 from Objetos.Nave import Nave
 from Objetos.Fondo import Fondo
 from Objetos.Enemy import Enemy
+from Objetos.Player import Player
+
 from funciones import *
 from scenes.main import menu
-
+from scenes.retry import reintentar
+import globals
 pygame.init()
 
 #--------- INICIALIZAR VARIABLES ------------
@@ -50,6 +53,8 @@ while (ventana):
     elif OPCION == 1:
         #set FPS
         RELOJ.tick(60)
+        print(nave.nave_vida)
+        print(OPCION)
 
 
         #Manejo Teclas Movimiento
@@ -87,5 +92,8 @@ while (ventana):
             set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
             contador += 1/60
             render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62)
+        else:
+            player = Player(globals.PLAYER_NAME,nave.score,int(contador))
+            OPCION = reintentar(lista_particulas,player,nave,lista_ast)
     pygame.display.flip()
 pygame.quit()

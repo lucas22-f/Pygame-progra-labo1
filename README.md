@@ -26,6 +26,7 @@ El desarrollo del juego "Space Attack" ha utilizado una combinación de las sigu
 2. SQLite: Se ha utilizado SQLite, un sistema de gestión de bases de datos ligero y de fácil integración, para almacenar y administrar la información de los jugadores, incluidos los nombres y puntajes máximos.
 
 3. Programación orientada a objetos (POO): El juego se ha desarrollado utilizando los principios de la programación orientada a objetos. Se han creado clases para representar los diferentes elementos del juego, como la nave del jugador, los enemigos, los proyectiles y los
+efectos de sonido. La POO ha permitido una estructura modular y organizada del código, facilitando el mantenimiento y la extensibilidad del juego.
 ## Ultimo Update
 
 ![image](https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/895b5bf8-bd65-43d8-bb02-807a43ed6cfc)

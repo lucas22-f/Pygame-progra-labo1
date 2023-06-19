@@ -3,7 +3,8 @@ from pygame.locals import *
 import globals
 from funciones import *
 from scenes.puntajes import puntaje
-def menu(lista_particulas):
+def menu(lista_particulas,player):
+
     pygame.init()
     screen = pygame.display.set_mode((ANCHO, ALTO))
     pygame.display.set_caption(GAME_NAME)
@@ -11,6 +12,8 @@ def menu(lista_particulas):
     title = pygame.font.Font("./fonts/SPACESUI.TTF", 50)
     sub_title = pygame.font.Font("./fonts/Square Game.otf", 30)
     puntajes = pygame.font.Font("./fonts/Starjout.ttf", 30)
+
+
     # Configuración de la fuente
     font = pygame.font.Font(None, 32)
     text_color = (255, 255, 255)
@@ -54,7 +57,7 @@ def menu(lista_particulas):
                         print(OPCION)
                         return OPCION 
                     elif event.key == K_LCTRL:
-                        OPCION2 = puntaje(lista_particulas)
+                        OPCION2 = puntaje(lista_particulas,player)
                     else:
                         # Agregar el carácter ingresado al string
                         globals.PLAYER_NAME += event.unicode

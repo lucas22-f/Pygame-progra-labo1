@@ -14,8 +14,6 @@ def reset_nave(nave,lista_ast):
     for e in lista_ast:
         e.velocidad = random.randrange(1,3,1)
     
-
-
 def reintentar(lista_particulas,player,nave,lista_ast):
     pygame.init()
     screen = pygame.display.set_mode((ANCHO, ALTO))
@@ -40,12 +38,10 @@ def reintentar(lista_particulas,player,nave,lista_ast):
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == K_r:
-                    print(player.retornar_dic())
                     reset_nave(nave,lista_ast)
                     OPCION = 1
                     return OPCION
                 elif event.key == K_m:
-                    print(player.retornar_dic())
                     reset_nave(nave,lista_ast)
                     OPCION = 0
                     return OPCION

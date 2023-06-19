@@ -1,7 +1,6 @@
 
 import pygame
 
-
 class Player:
     def __init__(self,nombre,puntaje,tiempo) -> None:
         self._nombre = nombre
@@ -21,8 +20,8 @@ class Player:
     
     def retornar_dic(self):
         dic = {}
-        dic["nombre"] = self._nombre
-        dic["puntaje"] = self._puntaje
-        dic["tiempo"] = self._tiempo
+        dic["nombre"] = self.get_nombre
+        dic["puntaje"] = self.get_puntaje
+        dic["tiempo"] = self.get_tiempo
         return dic
     

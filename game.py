@@ -40,12 +40,12 @@ setup_main_sounds()
 ventana = True
 contador = 0
 
-
+player = Player("",0,0)
 #----------BUCLE PRINCIPAL_-----------------
 while (ventana):
 
     if OPCION == 0:        
-        OPCION = menu(lista_particulas)
+        OPCION = menu(lista_particulas,player)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 ventana = False    

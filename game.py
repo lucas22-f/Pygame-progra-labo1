@@ -38,19 +38,21 @@ setup_main_sounds()
 
 #----------Variables booleanas y contadores----------
 ventana = True
-contador = 0
+nave.contador = 0
 
 player = Player("",0,0)
 #----------BUCLE PRINCIPAL_-----------------
 while (ventana):
     try:
-        if OPCION == 0:       
+        if OPCION == 0:
+               
             OPCION = menu(lista_particulas,player)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     ventana = False    
 
         elif OPCION == 1:
+        
             #set FPS
             RELOJ.tick(60)
 
@@ -87,11 +89,11 @@ while (ventana):
             #Func que actualiza la interfas dependiendo la vida de la nave.
             if nave.nave_vida > 0:
                 set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
-                contador += 1/60
-                render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62,"White")
+                nave.contador += 1/60
+                render_font_interfaz_main(font, f"{int(nave.contador)}", screen, 600, 62,"White")
             else:
-                player = Player(globals.PLAYER_NAME,nave.score,int(contador))
-                OPCION = reintentar(lista_particulas,player,nave,lista_ast)
+                player = Player(globals.PLAYER_NAME,nave.score,int(nave.contador))
+                OPCION = reintentar(lista_particulas,nave,lista_ast)
 
         pygame.display.flip()
     except pygame.error as e:

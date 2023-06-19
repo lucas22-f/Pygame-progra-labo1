@@ -12,16 +12,17 @@ def reset_nave(nave,lista_ast):
     nave.nave_visible = True
     nave.nave_vivo = True
     nave.score = 0
+    nave.contador = 0
     for e in lista_ast:
         e.velocidad = random.randrange(1,3,1)
     
-def reintentar(lista_particulas,player,nave,lista_ast):
+def reintentar(lista_particulas,nave,lista_ast,):
     pygame.init()
     screen = pygame.display.set_mode((ANCHO, ALTO))
     pygame.display.set_caption(GAME_NAME)
     title = pygame.font.Font("./fonts/Starjout.ttf", 50)
     sub_title = pygame.font.Font("./fonts/Square Game.otf", 30)
-
+ 
     # Bucle principal
     running = True
     while running:

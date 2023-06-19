@@ -34,6 +34,7 @@ class Nave:
         self.nave_vida = 300
         self.balas = []
         self.score = 0
+        self.contador = 0
        
 
     def actualizar(self,screen,enemigo):

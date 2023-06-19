@@ -18,8 +18,8 @@ def set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
 
     Asteroide.verificar_colision(lista_ast, lista_colisionados, nave)
     Asteroide.actualizar_pantalla(lista_ast, screen)
-    render_font_interfaz_main(font, "Vida", screen, 1130, 62)
-    render_font_interfaz_main(font, f"score  {nave.score}", screen, 200, 62)
+    render_font_interfaz_main(font, "Vida", screen, 1130, 62,"White")
+    render_font_interfaz_main(font, f"score  {nave.score}", screen, 200, 62,"White")
     screen.blit(barra_vida, (972, 8))
     
 
@@ -37,8 +37,8 @@ def set_timers():
     return tick
 
 
-def render_font_interfaz_main(font, mensaje, screen, x, y):
-    text_surface = font.render(f"{mensaje}", True, "White")
+def render_font_interfaz_main(font, mensaje, screen, x, y,color):
+    text_surface = font.render(f"{mensaje}", True, f"{color}")
     text_rect = text_surface.get_rect()
     text_rect.center = (x, y)
     screen.blit(text_surface, text_rect)

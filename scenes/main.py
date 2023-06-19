@@ -3,6 +3,7 @@ from pygame.locals import *
 import globals
 from funciones import *
 from scenes.puntajes import puntaje
+from database.db import *
 def menu(lista_particulas,player):
 
     pygame.init()
@@ -12,8 +13,10 @@ def menu(lista_particulas,player):
     title = pygame.font.Font("./fonts/SPACESUI.TTF", 50)
     sub_title = pygame.font.Font("./fonts/Square Game.otf", 30)
     puntajes = pygame.font.Font("./fonts/Starjout.ttf", 30)
+    esc = pygame.font.Font("./fonts/Starjout.ttf", 15)
 
 
+    
     # Configuración de la fuente
     font = pygame.font.Font(None, 32)
     text_color = (255, 255, 255)
@@ -36,9 +39,10 @@ def menu(lista_particulas,player):
         screen.fill("Black")
         set_up_fondo(lista_particulas,screen)
         if OPCION2 == 0:
-            render_font_interfaz_main(title,"Space - Attack",screen,screen.get_rect().centerx,screen.get_rect().centery-150)
-            render_font_interfaz_main(sub_title,"Ingresa tu nombre  luego        ENTER  <--|    para jugar",screen,screen.get_rect().centerx,screen.get_rect().centery-70)
-            render_font_interfaz_main(puntajes,"Presiona Ctrl para ver los puntajes",screen,screen.get_rect().centerx,screen.get_rect().centery+100)
+            render_font_interfaz_main(title,"Space - Attack",screen,screen.get_rect().centerx,screen.get_rect().centery-150,"White")
+            render_font_interfaz_main(sub_title,"Ingresa tu nombre  luego        ENTER  <--|    para jugar",screen,screen.get_rect().centerx,screen.get_rect().centery-70,"White")
+            render_font_interfaz_main(puntajes,"Presiona Ctrl para ver los puntajes",screen,screen.get_rect().centerx,screen.get_rect().centery+100,"White")
+            render_font_interfaz_main(esc,"Presiona Esc para salir del juego",screen,screen.get_rect().centerx,screen.get_rect().centery+300,"White")
 
             pygame.draw.rect(rect_surface, (255, 255, 255), rect_surface.get_rect(), 3)
             screen.blit(rect_surface,(screen.get_rect().centerx-251,screen.get_rect().centery-27))
@@ -51,13 +55,12 @@ def menu(lista_particulas,player):
                         globals.PLAYER_NAME = globals.PLAYER_NAME[:-1]
                     elif event.key == K_RETURN:
                         # Realizar algo con el string ingresado (en este caso, solo imprimirlo)
-                        print(globals.PLAYER_NAME)
-                        input_string = ""
                         OPCION = 1
-                        print(OPCION)
                         return OPCION 
                     elif event.key == K_LCTRL:
                         OPCION2 = puntaje(lista_particulas,player)
+                    elif event.key == K_ESCAPE:
+                        running = False
                     else:
                         # Agregar el carácter ingresado al string
                         globals.PLAYER_NAME += event.unicode

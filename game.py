@@ -43,55 +43,59 @@ contador = 0
 player = Player("",0,0)
 #----------BUCLE PRINCIPAL_-----------------
 while (ventana):
+    try:
+        if OPCION == 0:       
+            OPCION = menu(lista_particulas,player)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    ventana = False    
 
-    if OPCION == 0:        
-        OPCION = menu(lista_particulas,player)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                ventana = False    
+        elif OPCION == 1:
+            #set FPS
+            RELOJ.tick(60)
 
-    elif OPCION == 1:
-        #set FPS
-        RELOJ.tick(60)
-
-        #Manejo Teclas Movimiento
-        lista_teclas = pygame.key.get_pressed()
-        if lista_teclas[pygame.K_UP]:
-            Nave.actualizar_movimientoY(nave, -7)
-        if lista_teclas[pygame.K_DOWN]:
-            Nave.actualizar_movimientoY(nave, 7)
-        if lista_teclas[pygame.K_LEFT]:
-                Nave.actualizar_movimientoX(nave, -7)
-        if lista_teclas[pygame.K_RIGHT]:
-            Nave.actualizar_movimientoX(nave, 7)
+            #Manejo Teclas Movimiento
+            lista_teclas = pygame.key.get_pressed()
+            if lista_teclas[pygame.K_UP]:
+                Nave.actualizar_movimientoY(nave, -7)
+            if lista_teclas[pygame.K_DOWN]:
+                Nave.actualizar_movimientoY(nave, 7)
+            if lista_teclas[pygame.K_LEFT]:
+                    Nave.actualizar_movimientoX(nave, -7)
+            if lista_teclas[pygame.K_RIGHT]:
+                Nave.actualizar_movimientoX(nave, 7)
 
 
-        #Manejo Eventos
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                ventana = False
-            if event.type == pygame.USEREVENT:
-                if event.type == tick:
-                    enemy.disparar_enemy()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    Nave.disparar(nave)
+            #Manejo Eventos
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    ventana = False
+                if event.type == pygame.USEREVENT:
+                    if event.type == tick:
+                        enemy.disparar_enemy()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        Nave.disparar(nave)
 
-        #Color - Fondo
-        screen.fill("Black")
+            #Color - Fondo
+            screen.fill("Black")
 
-        #Funcion que actualiza los elementos del juego:
-        set_game_run(lista_ast,nave,lista_particulas,screen,enemy)
-        barra_vida = nave.actualizar_vida()
+            #Funcion que actualiza los elementos del juego:
+            set_game_run(lista_ast,nave,lista_particulas,screen,enemy)
+            barra_vida = nave.actualizar_vida()
 
-        #Func que actualiza la interfas dependiendo la vida de la nave.
-        if nave.nave_vida > 0:
-            set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
-            contador += 1/60
-            render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62)
-        else:
-            player = Player(globals.PLAYER_NAME,nave.score,int(contador))
-            OPCION = reintentar(lista_particulas,player,nave,lista_ast)
-            
-    pygame.display.flip()
+            #Func que actualiza la interfas dependiendo la vida de la nave.
+            if nave.nave_vida > 0:
+                set_game_interface(lista_ast,lista_colisionados,nave,screen,font,barra_vida)
+                contador += 1/60
+                render_font_interfaz_main(font, f"{int(contador)}", screen, 600, 62,"White")
+            else:
+                player = Player(globals.PLAYER_NAME,nave.score,int(contador))
+                OPCION = reintentar(lista_particulas,player,nave,lista_ast)
+
+        pygame.display.flip()
+    except pygame.error as e:
+        print("Fin del juego")
+        ventana = False
+
 pygame.quit()

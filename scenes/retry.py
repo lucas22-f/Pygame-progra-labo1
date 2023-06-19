@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import globals
 from funciones import *
+
 import random
 def reset_nave(nave,lista_ast):
     nave.nave_vida = 300
@@ -28,10 +29,10 @@ def reintentar(lista_particulas,player,nave,lista_ast):
         RELOJ.tick(60)
         screen.fill("Black")
         set_up_fondo(lista_particulas,screen)
-        render_font_interfaz_main(title,"Reintentar ? ",screen,screen.get_rect().centerx,screen.get_rect().centery-290)
-        render_font_interfaz_main(sub_title,"R -- Reintentar",screen,screen.get_rect().centerx,screen.get_rect().centery-100)
-        render_font_interfaz_main(sub_title,"M -- Menu Principal",screen,screen.get_rect().centerx,screen.get_rect().centery-50)
-        render_font_interfaz_main(sub_title,"ESC -- SALIR DEL JUEGO",screen,screen.get_rect().centerx,screen.get_rect().centery)
+        render_font_interfaz_main(title,"Reintentar ? ",screen,screen.get_rect().centerx,screen.get_rect().centery-290,"White")
+        render_font_interfaz_main(sub_title,"R -- Reintentar",screen,screen.get_rect().centerx,screen.get_rect().centery-100,"White")
+        render_font_interfaz_main(sub_title,"M -- Menu Principal",screen,screen.get_rect().centerx,screen.get_rect().centery-50,"White")
+        render_font_interfaz_main(sub_title,"ESC -- SALIR DEL JUEGO",screen,screen.get_rect().centerx,screen.get_rect().centery,"White")
         
         for event in pygame.event.get():
             if event.type == QUIT:

@@ -3,6 +3,10 @@ Introducción:
 --------------
 "Space Attack" es un emocionante juego de disparos en el espacio donde los jugadores asumen el papel de un  piloto espacial que debe enfrentarse a el boss alienigena y la lluvia de asteroides. El objetivo principal es lograr la mayor puntuación posible y alcanzar los niveles más altos.
 
+## Video demostrativo
+
+https://github.com/lucas22-f/Pygame-progra-labo1/assets/71677198/b2a2d019-b155-4cf7-8124-a764407fcd3d
+
 Características principales:
 ---------------------------
 1. Música y efectos de sonido: El juego cuenta con una banda sonora envolvente y efectos de sonido realistas que mejoran la inmersión del jugador en el entorno espacial. La música y los efectos de sonido se sincronizan con las acciones del jugador y las interacciones con los enemigos.

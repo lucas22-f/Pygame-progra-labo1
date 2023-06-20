@@ -43,14 +43,20 @@ nave.contador = 0
 player = Player("",0,0)
 #----------BUCLE PRINCIPAL_-----------------
 while (ventana):
+
+    #Aplicamos try except para interceptar cualquier error de ejecucion del juego
     try:
+        #consultamos por la variable Global que controla la opcion del menu, 
         if OPCION == 0:
                
+               #func menu actualiza el valor de la variable Opcion
             OPCION = menu(lista_particulas,player)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     ventana = False    
 
+
+            #si OPCION = 1 entonces entramos al juego
         elif OPCION == 1:
         
             #set FPS
@@ -92,6 +98,8 @@ while (ventana):
                 nave.contador += 1/60
                 render_font_interfaz_main(font, f"{int(nave.contador)}", screen, 600, 62,"White")
             else:
+                #Si la nave murio entonces guardamos los datos del ultimo jugador y lanzamos la pantalla de reintento actualizando OPCION
+                #nuevamente .
                 player = Player(globals.PLAYER_NAME,nave.score,int(nave.contador))
                 OPCION = reintentar(lista_particulas,nave,lista_ast)
 

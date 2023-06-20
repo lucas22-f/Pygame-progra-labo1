@@ -15,7 +15,8 @@ with sqlite3.connect(ruta) as conexion:
     except sqlite3.OperationalError:
         print("Base de datos conectada")
 
-def insertar_dato_en_tabla(jugador):
+
+def insertar_dato_en_tabla(jugador):    
     with sqlite3.connect(ruta) as conexion:
         try:
             #creamos la sentencia y ejecutamos por nombre
@@ -35,12 +36,11 @@ def insertar_dato_en_tabla(jugador):
         except:
             print("Error al insertar en la tabla")
          
-
-
+         
 def traer_tabla_ordenada():
     with sqlite3.connect(ruta) as conexion:
         try:
-            respuesta = conexion.execute("SELECT * from jugadores ORDER BY puntaje DESC")
+            respuesta = conexion.execute("SELECT * from jugadores ORDER BY puntaje DESC LIMIT 15")
             lista_jugadores = respuesta.fetchall()
             return lista_jugadores
         except:

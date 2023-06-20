@@ -4,7 +4,6 @@ from globals import *
 from funciones import *
 from database.db import *
 
-
 def puntaje(lista_particulas,player):
     pygame.init()
     screen = pygame.display.set_mode((ANCHO, ALTO))
@@ -38,7 +37,6 @@ def puntaje(lista_particulas,player):
 
         
         for event in pygame.event.get():
-            
             if event.type == QUIT:
                 running = False
             elif event.type == KEYDOWN:
